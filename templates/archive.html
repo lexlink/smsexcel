@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Archive</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-archive.css') }}">
+</head>
+<body>
+    <h1>Archive</h1>
+    <p>Total Records: {{ total_records }}</p>
+    <form method="GET" action="/">
+        <button type="submit" class="btn btn-primary">Back</button>
+    </form>
+    <form method="POST" action="/delete-all-archive">
+        <button type="submit" class="btn btn-danger">Delete All Records</button>
+    </form>
+   <table>
+    <tr>
+        <th>Message ID</th>
+        <th>Sent To</th>
+        <th>Sent Text</th>
+        <th>Delivered</th>
+        <th>Status ID</th>
+        <th>Timestamp</th>
+    </tr>
+
+    <tr>
+        <td>{{ record.message_id }}</td>
+        <td>{{ record.sent_to }}</td>
+        <td>{{ record.sent_text }}</td>
+        <td>{{ record.delivered }}</td>
+        <td>{{ record.status_id }}</td>
+        <td>{{ record.timestamp }}</td>
+    </tr>
+  
+</table>
+
+</body>
+</html>
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=0">
+</head>
+<body>
+    <div class="container">
+        <h1>ატვირთვის შედეგი</h1>
+        <h2>The number of records: {{ total_records }}</h2>
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="/results?page={{ page - 1 }}" class="btn btn-primary btn-previous">>წინა</a>
+            {% endif %}
+            {% if page * results_per_page < total_records %}
+            <a href="/results?page={{ page + 1 }}" class="btn btn-primary btn-next">შემდეგი</a>
+            {% endif %}
+        </div>
+
+         <form method="GET" action="/next-stage">
+            <button type="submit" class="btn btn-primary btn-continue">გაგრძელეება</button>
+        </form>
+
+        <div style="margin-top: 20px;"></div> <!-- Add space between the buttons -->
+
+
+        {% for record in records %}
+        <div>
+         Phone Number: {{ record[0] }}, Amount to Pay: {{ record[1] }}
+        </div>
+        {% endfor %}
+         <form method="GET" action="/">
+            <button type="submit" class="btn btn-primary btn-cancel">გაუქმება</button>
+        </form>
+    </div>
+    </body>
+</html>

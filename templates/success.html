@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-success.css') }}">
+</head>
+<body>
+    <h1>SMS'es</h1>
+    <p>Total Records: {{ total_records }}</p>
+
+    <div class="button-container">
+        <form action="/check-delivery-reports" method="POST">
+            <button type="submit" class="btn btn-primary">თუ ცარიელია მესიჯის ID</button>
+        </form>
+        <form action="/check-delivery-api" method="POST">
+            <button type="submit" class="btn btn-primary">შემოწმება API –სთან</button>
+        </form>
+        <form method="POST" action="/archive-records">
+            <button type="submit" class="btn btn-primary">ჩანაწერების დაარქივება</button>
+        </form>
+        <!-- <form method="POST" action="/delete-all">
+            <button type="submit" class="btn btn-danger">ჩანაწერების წაშლა</button>
+        </form> -->
+        <form method="GET" action="/archive">
+            <button type="submit" class="btn btn-primary btn-archive">არქივი</button>
+        </form>
+        <form action="/" method="GET">
+            <button type="submit" class="btn btn-primary">დამთავრება</button>
+        </form>
+
+
+    </div>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>მესიჯის ID</th>
+        <th>გაგზავნილია #</th>
+        <th>ტექსტი</th>
+        <th>მისულია</th>
+        <th>სტატუს ID</th>
+        <th>დრო</th>
+    </tr>
+    {% set counter = 1 %}
+    {% for item in data %}
+        {% if item.message_id == '' %}
+            <tr>
+                <td>{{ item._id }}</td>
+                <td>{{ item.message_id }}</td>
+                <td>{{ item.sent_to }}</td>
+                <td>{{ item.sent_text }}</td>
+                <td>{{ item.delivered }}</td>
+                <td>{{ item.status_id }}</td>
+                <td>{{ item.timestamp }}</td>
+            </tr>
+            {% set counter = counter + 1 %}
+        {% endif %}
+    {% endfor %}
+    {% for item in data %}
+        {% if item.status_id == '0' and item.message_id != '' %}
+            <tr>
+                <td>{{ item._id }}</td>
+                <td>{{ item.message_id }}</td>
+                <td>{{ item.sent_to }}</td>
+                <td>{{ item.sent_text }}</td>
+                <td>{{ item.delivered }}</td>
+                <td>{{ item.status_id }}</td>
+                <td>{{ item.timestamp }}</td>
+            </tr>
+            {% set counter = counter + 1 %}
+        {% endif %}
+    {% endfor %}
+    {% for item in data %}
+        {% if item.message_id != '' and item.status_id != '0' %}
+            <tr>
+                <td>{{ item._id }}</td>
+                <td>{{ item.message_id }}</td>
+                <td>{{ item.sent_to }}</td>
+                <td>{{ item.sent_text }}</td>
+                <td>{{ item.delivered }}</td>
+                <td>{{ item.status_id }}</td>
+                <td>{{ item.timestamp }}</td>
+            </tr>
+            {% set counter = counter + 1 %}
+        {% endif %}
+    {% endfor %}
+</table>
+
+
+</body>
+</html>
+

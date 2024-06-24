@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>გადამოწმება</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-last-stage.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ბოლო საფეხური</h1>
+        <form method="GET" action="/">
+            <button type="submit" class="btn btn-primary btn-cancel">გაუქმება</button>
+        </form>
+        <h2>როგორ გამოიურება გასაგზავნი სმს:</h2>
+        <ul>
+            {% for record in records[:5] %}
+            <li>იგზავნება ვისთან: {{ record[0] }}, გასაგზავნი ტექსტი: {{ record[1] }}</li>
+            {% endfor %}
+        </ul>
+        <form method="POST" action="/send-sms">
+            <input type="hidden" name="input_text" value="{{ input_text }}">
+            {% for record in records %}
+            <input type="hidden" name="new_records[]" value="{{ record[0] }},{{ record[1] }}">
+            {% endfor %}
+            <button type="submit" class="btn btn-primary btn-send">გაგზავნა</button>
+        </form>
+    </div>
+</body>
+</html>

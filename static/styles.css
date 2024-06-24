@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f1f1f1;
+    text-decoration: none;
+    color: black;
+}
+
+.btn-previous {
+    margin-right: auto;
+}
+
+.btn-next {
+    margin-left: auto;
+}
+
+.flash-message {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+}

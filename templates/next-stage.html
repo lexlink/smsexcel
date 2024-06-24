@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ტექსტი</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-next-stage.css') }}">
+</head>
+<body>
+    <h1>შემდეგი ნაბიჯი</h1>
+    <h2>შეიყვანე ტექსტი ინგლისური ასოებით, მაგ: "gtxovt gadaixadot tanxa", სიტყვა თანხა ჩანაცვლდება დავალიანებებით. </h2>
+    <form method="POST" action="/last-stage">
+        <input type="text" name="input_text" id="sms_text" placeholder="Enter your text" maxlength="160">
+        <p id="chars_left">დარჩენილი სიმბოლო: 160</p>
+        <input type="hidden" name="records" value="{{ records }}">
+        <button type="submit" class="btn btn-primary">შემდეგი</button>
+    </form>
+    <form method="GET" action="/">
+        <button type="submit" class="btn btn-primary">გაუქმება</button>
+    </form>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

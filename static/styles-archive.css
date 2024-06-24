@@ -1,0 +1,29 @@
+body {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.btn-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.btn-primary,
+.btn-danger {
+  margin-right: 10px;
+}

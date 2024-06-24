@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SMS Send</title>
+</head>
+<body>
+    <h1>SMS Send</h1>
+    <h2>Changed Records</h2>
+    <ul>
+        {% for record in new_records %}
+        <li>Phone Number: {{ record[0] }}, Changed Text: {{ record[1] }}</li>
+        {% endfor %}
+    </ul>
+    <form method="GET" action="/">
+        <button type="submit">Cancel</button>
+    </form>
+</body>
+</html>
